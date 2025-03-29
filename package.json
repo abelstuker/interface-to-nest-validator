@@ -1,0 +1,27 @@
+{
+  "name": "typescript-validation-generator",
+  "version": "1.0.0",
+  "description": "A TypeScript tool for generating validation classes from interfaces.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "generate": "npm run build && node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@types/node": "22.13.14",
+    "@typescript-eslint/eslint-plugin": "8.28.0",
+    "@typescript-eslint/parser": "8.28.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "10.1.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "prettier": "^3.0.3"
+  },
+  "type": "commonjs"
+}
