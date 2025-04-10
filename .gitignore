@@ -63,3 +63,4 @@ config/default.json
 
 # Test files (for now)
 test
+/output

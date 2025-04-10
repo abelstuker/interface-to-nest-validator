@@ -1,55 +1,40 @@
 // interfaces.ts
 
-export enum UserRole {
-  ADMIN = "admin",
-  USER = "user",
-  GUEST = "guest",
-}
+/**
+ * DEMONSTRATION
+ * This file is used to demonstrate the functionality of the interface-to-nest-validator package.
+ */
 
-export interface IUser {
+interface User {
   /**
-   * @email
-   * @required
+   * The identifier of the user
+   * Notice that we can leave out @validate number here, since its validation is derived from the type
    */
-  email: string;
-
+  id: number;
   /**
-   * @minLength(2)
-   * @maxLength(50)
+   * The name of the user
+   * Notice that we can leave out @validate string here, since its validation is derived from the type
    */
   name: string;
-
   /**
-   * @isEnum(UserRole)
+   * The email of the user
+   * @validate email
    */
-  role: UserRole;
-
+  email: string;
   /**
-   * @min(18)
-   * @max(120)
-   * @isInt
+   * The favorite color of the user
+   * @validate hexcolor
    */
-  age: number;
-
+  favoriteColor: string;
   /**
-   * @isUrl
+   * Whether the user likes bananas
+   * @validate boolean
+   */
+  likesBananas: boolean;
+  /**
+   * Whether the user likes apples
+   * Notice that we can leave out the @validate boolean annotation, since its validation is dereived from the type
    * @notRequired
    */
-  website?: string;
-
-  /**
-   * @isDate
-   */
-  createdAt: string;
-
-  /**
-   * @isArray
-   * @arrayMinSize(1)
-   */
-  tags: string[];
-
-  /**
-   * @pattern(/^[A-Z]{2}\d{6}$/)
-   */
-  idNumber: string;
+  likesApples: boolean;
 }

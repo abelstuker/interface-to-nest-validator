@@ -1,48 +1,30 @@
-import { IsEmail, IsNotEmpty, IsString, IsOptional, IsBoolean, IsNumber, Min, Max, MinLength, MaxLength, IsDate, IsUrl, IsUUID, IsEnum, IsArray, ArrayMinSize, ArrayMaxSize, Equals, Matches, IsInt } from 'class-validator';
-import { Expose } from 'class-transformer';
+// @ts-nocheck
+import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
-export class UserDto {
+export class User {
+  @IsNumber()
+  @IsNotEmpty()
+  id: number;
+
   @IsString()
   @IsNotEmpty()
-  @Expose()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsEmail()
   email: string;
 
   @IsString()
   @IsNotEmpty()
-  @Expose()
-  name: string;
+  @IsHexColor()
+  favoriteColor: string;
 
+  @IsBoolean()
   @IsNotEmpty()
-  @Expose()
-  role: UserRole;
+  likesBananas: boolean;
 
-  @IsNumber()
-  @IsNotEmpty()
-  @Expose()
-  age: number;
-
-  @IsString()
+  @IsBoolean()
   @IsOptional()
-  @Expose()
-  website?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @Expose()
-  createdAt: string;
-
-  @IsArray()
-  @IsNotEmpty()
-  @Expose()
-  tags: string[];
-
-  @IsString()
-  @IsNotEmpty()
-  @Expose()
-  idNumber: string;
-
-  constructor(partial?: Partial<UserDto>) {
-    Object.assign(this, partial || {});
-  }
+  likesApples: boolean;
 }
-

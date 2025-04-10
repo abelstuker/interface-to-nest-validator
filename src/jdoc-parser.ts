@@ -1,4 +1,4 @@
-import * as ts from "typescript";
+import ts from "typescript";
 
 export function parseJSDocComments(
   node: ts.Node,
@@ -6,11 +6,8 @@ export function parseJSDocComments(
 ): string[] {
   const fullText = sourceFile.getFullText();
   const nodeStart = node.getFullStart();
-  const priorText = fullText.substring(0, nodeStart);
-  const lastLineBreak = priorText.lastIndexOf("\n");
-  const relevantText = priorText.substring(
-    lastLineBreak !== -1 ? lastLineBreak : 0
-  );
+  const nodeEnd = node.getEnd();
+  const relevantText = fullText.substring(nodeStart, nodeEnd);
 
   const jsDocPattern = /\/\*\*[\s\S]*?\*\//g;
   const jsDocComment = relevantText.match(jsDocPattern);
@@ -22,7 +19,7 @@ export function parseJSDocComments(
     .map((line) =>
       line
         .trim()
-        .replace(/^\s*\*\s*/, "")
+        .replace(/^\s*\*\s*/, "") // Remove leading asterisk and whitespace
         .trim()
     )
     .filter(
